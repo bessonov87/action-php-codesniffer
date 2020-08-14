@@ -14,7 +14,8 @@ export async function runOnBlame(files: string[]): Promise<void> {
 
     const lintResults = await lint(
       files,
-      core.getInput('phpcs_path', { required: true })
+      core.getInput('phpcs_path', { required: true }),
+      options
     );
 
     const dontFailOnWarning =
@@ -27,7 +28,7 @@ export async function runOnBlame(files: string[]): Promise<void> {
 
     // blame files and output relevant errors
     const payload = github.context
-      .payload as Webhooks.WebhookPayloadPullRequest;
+      .payload as Webhooks.EventPayloads.WebhookPayloadPullRequest;
     // get email of author of first commit in PR
     const authorEmail = execFileSync(
       'git',
