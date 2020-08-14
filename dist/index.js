@@ -1325,6 +1325,7 @@ function runOnCompleteFiles(files) {
         args.push('--runtime-set ignore_warnings_on_exit 1');
     }
     try {
+        child_process_1.execSync(`${phpcs} --config-set installed_paths /app/src/vendor/phpcompatibility/php-compatibility`);
         child_process_1.execSync(`${phpcs} ${args.join(' ')} ${files.join(' ')}`, {
             stdio: 'inherit',
             timeout: 20000,
