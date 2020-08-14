@@ -18,9 +18,6 @@ export function runOnCompleteFiles(files: string[]): number {
   }
 
   try {
-    execSync(
-      `${phpcs} --config-set installed_paths /app/src/vendor/phpcompatibility/php-compatibility`
-    );
     execSync(`${phpcs} ${args.join(' ')} ${files.join(' ')}`, {
       stdio: 'inherit',
       timeout: 20000,
